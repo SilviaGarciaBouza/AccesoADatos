@@ -1,0 +1,4 @@
+vaca, 15.0, 4, false
+garza, 50.0, 2, true
+erizo, 7.0, 4, false
+pingüino, 20.0, 2, false

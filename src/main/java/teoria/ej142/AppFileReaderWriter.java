@@ -1,5 +1,6 @@
 package teoria.ej142;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,13 +8,40 @@ import java.util.List;
 public class AppFileReaderWriter {
 
     public static void main(String[] args) {
-        ejercicioA();
-        //ejercicioB();
-        //ejercicioC();
+       // ejercicioA();
+       // System.out.println("***************************************************");
+      //  ejercicioB();
+        // System.out.println("***************************************************");
+
+        ejercicioC();
     }
 
     private static void ejercicioA() {
-        throw new UnsupportedOperationException("A implementar por el alumno");
+        String rutaFichero= "nuevo.txt";
+        List<String> lista= List.of("limon", "fresa", "naranja");
+        System.out.println("------------------------------------");
+        GestorFichero.write(rutaFichero, true);
+        System.out.println("------------------------------------");
+        GestorFichero.write(rutaFichero, true,lista);
+        System.out.println("------------------------------------");
+        GestorFichero.read(rutaFichero);
+        System.out.println("------------------------------------");
+        GestorFichero.printWrite(rutaFichero,true);
+        System.out.println("------------------------------------");
+        GestorFichero.printWrite(rutaFichero,true, lista);
+        System.out.println("------------------------------------");
+        System.out.println("------------------------------------");
+        GestorFichero.write(rutaFichero, false);
+        System.out.println("------------------------------------");
+        GestorFichero.write(rutaFichero, false,lista);
+        System.out.println("------------------------------------");
+        GestorFichero.read(rutaFichero);
+        System.out.println("------------------------------------");
+        GestorFichero.printWrite(rutaFichero,false);
+        System.out.println("------------------------------------");
+        GestorFichero.printWrite(rutaFichero,false, lista);
+
+        //throw new UnsupportedOperationException("A implementar por el alumno");
     }
 
     /**
@@ -23,7 +51,19 @@ public class AppFileReaderWriter {
      *
      */
     private static void ejercicioB() {
-        throw new UnsupportedOperationException("A implementar por el alumno");
+        //throw new UnsupportedOperationException("A implementar por el alumno");
+        String rutaFichero= "nuevo2.txt";
+
+        List<Integer>lista= List.of(1,3,5,7,9);
+        GestorFichero.write(rutaFichero, false,lista.stream().map(e->e.toString()).toList());
+        System.out.println("------------------------------------");
+        GestorFichero.write(rutaFichero, true,lista.stream().map(e->e.toString()).toList());
+        System.out.println("------------------------------------");
+        GestorFichero.printWrite(rutaFichero, true,lista.stream().map(e->e.toString()).toList());
+        System.out.println("------------------------------------");
+        GestorFichero.printWrite(rutaFichero, false,lista.stream().map(e->e.toString()).toList());
+        System.out.println("------------------------------------");
+
     }
 
     /**
@@ -31,7 +71,16 @@ public class AppFileReaderWriter {
      *
      */
     private static void ejercicioC() {
-        throw new UnsupportedOperationException("A implementar por el alumno");
+        List<Animal> listaAnimales= new ArrayList<>();
+        List<String> listaCadenaAnimales;
+        String rutaFichero= "nuevo3.txt";
+        listaAnimales.add(new Animal("vaca", 15, 4, false));
+        listaAnimales.add(new Animal("garza", 50, 2, true));
+        listaAnimales.add(new Animal("erizo", 7, 4, false));
+        listaAnimales.add(new Animal("pingüino", 20, 2, false));
+
+        listaCadenaAnimales= getLinesFromAnimals(listaAnimales);
+        GestorFichero.printWrite(rutaFichero, true, listaCadenaAnimales);
     }
 
     /**
@@ -40,7 +89,8 @@ public class AppFileReaderWriter {
      * @return
      */
     private static List<String> getLinesFromAnimals(List<Animal> animales) {
-        throw new UnsupportedOperationException("A implementar por el alumno");
+        return animales.stream().map(e->getLineFromAnimal(e)).toList();
+
     }
 
     /**
@@ -49,6 +99,6 @@ public class AppFileReaderWriter {
      * @return
      */
     private static String getLineFromAnimal(Animal animal) {
-        throw new UnsupportedOperationException("A implementar por el alumno");
+        return animal.getNombre()+", "+animal.getVelocidad()+", "+animal.getCantidadPatas()+", "+animal.isPuedeVolar();
     }
 }

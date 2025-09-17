@@ -31,7 +31,26 @@ public class GestorFicheroBuffered {
 	 * @throws IOException
 	 */
 	public static void writeLines(File fichero, boolean append, List<String> lines) throws IOException {
-		throw new UnsupportedOperationException("A implementar por el alumno");
+        try(
+                FileOutputStream fos= new FileOutputStream(fichero, append);
+                OutputStreamWriter osw=new OutputStreamWriter(fos);
+                BufferedWriter bw= new BufferedWriter(osw);
+
+
+                ){
+            lines.forEach(e-> {
+                try {
+                    bw.write(e);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+
 	}
 
 	/**
