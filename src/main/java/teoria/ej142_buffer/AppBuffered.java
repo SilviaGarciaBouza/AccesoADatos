@@ -5,12 +5,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.List.*;
+
 public class AppBuffered {
 
 	public static void main(String[] args) {
 		File fichero = new File("src/main/resources/fichero_buffered.txt");
-		//ejemploBasico(nombreFichero);
-		//imprimirPorConsola(nombreFichero);
+        /* ejemploBasico(nombreFichero); */
+        try {
+            imprimirPorConsola(fichero);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         try {
             escribirNumeros(fichero,5);
         } catch (IOException e) {
@@ -22,8 +28,8 @@ public class AppBuffered {
 	 * LLamar al metodo printToConsole de GestorFicheroBuffered
 	 * @param fichero
 	 */
-	private static void imprimirPorConsola(File fichero) {
-		throw new UnsupportedOperationException("A implementar por el alumno");
+	private static void imprimirPorConsola(File fichero) throws IOException {
+        GestorFicheroBuffered.printFileToConsole(fichero);
 	}
 
 	/**
@@ -38,8 +44,17 @@ public class AppBuffered {
 	 * @throws IOException
 	 */
 	private static void escribirNumeros(File fichero,int numeroMaximo) throws IOException {
-		throw new UnsupportedOperationException("A implementar por el alumno");
-	}
+	ArrayList<String> listaNumeros = new ArrayList<>();
+    for(int i=0; i<numeroMaximo; i++){
+        if(i%2==0){
+            listaNumeros.add("El numero "+ i + " es par\n");
+        }else {
+            listaNumeros.add("El numero "+ i + " es impar\n");
+        }
+    }
+        GestorFicheroBuffered.writeLines(fichero, false, listaNumeros.stream().toList());
+         GestorFicheroBuffered.readLines(fichero);
+    }
 
 
 

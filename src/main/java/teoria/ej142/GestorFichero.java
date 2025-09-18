@@ -65,12 +65,7 @@ public class GestorFichero {
         try (
                 FileReader fr = new FileReader(f);
                 BufferedReader bfr = new BufferedReader(fr)) {
-            List<String> listaTexto= bfr.lines().toList();
-            listaTexto.forEach(
-                   elemento->{
-                       sb.append(elemento);
-                       System.out.println(elemento);}
-            );
+
             return sb.toString();//añadir el ªN ??
         } catch (IOException e) {
            return e.getMessage();

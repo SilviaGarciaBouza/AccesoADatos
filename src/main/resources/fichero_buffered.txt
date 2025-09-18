@@ -1,0 +1,5 @@
+El numero 0 es par
+El numero 1 es impar
+El numero 2 es par
+El numero 3 es impar
+El numero 4 es par

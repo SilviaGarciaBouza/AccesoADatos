@@ -19,8 +19,22 @@ public class GestorFicheroBuffered {
 	 * @throws IOException
 	 */
 	public static List<String> readLines(File fichero) throws IOException {
-		throw new UnsupportedOperationException("A implementar por el alumno");
-	}
+        List<String> listaTexto = List.of();
+        try(
+                FileInputStream fos= new FileInputStream(fichero);
+                InputStreamReader osw=new InputStreamReader(fos);
+                BufferedReader bfr= new BufferedReader(osw);
+
+
+        ){
+            listaTexto= bfr.lines().toList();
+
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return listaTexto;
+    }
 
 	/**
 	 * Recibe una lista de lineas que desea volcar a fichero
@@ -41,6 +55,7 @@ public class GestorFicheroBuffered {
             lines.forEach(e-> {
                 try {
                     bw.write(e);
+
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -60,6 +75,6 @@ public class GestorFicheroBuffered {
 	 * @throws IOException
 	 */
 	public static void printFileToConsole(File fichero) throws IOException {
-		throw new UnsupportedOperationException("A implementar por el alumno");
+readLines(fichero).forEach(e-> System.out.println(e));
 	}
 }

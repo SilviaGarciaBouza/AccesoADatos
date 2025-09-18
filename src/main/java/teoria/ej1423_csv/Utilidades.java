@@ -12,7 +12,8 @@ public class Utilidades {
      *         María,32,maria@example.com
      */
     public List<String> getLineasAlumnos(List<Alumno> alumnos) {
-        throw new UnsupportedOperationException("A implementar por el alumno");
+            return alumnos.stream().map(e-> getLineaAlumno(e)).toList();
+
     }
 
     /**
@@ -21,7 +22,7 @@ public class Utilidades {
      * @return Juan,28,juan@example.com
      */
     public String getLineaAlumno(Alumno alumno) {
-        throw new UnsupportedOperationException("A implementar por el alumno");
+        return alumno.toString();
     }
 
     /**
@@ -33,8 +34,7 @@ public class Utilidades {
      * @return
      */
     public List<Alumno> getAlumnosFromLineas(List<String> lineas) {
-        //Quitamos la cabecera
-        throw new UnsupportedOperationException("A implementar por el alumno");
+        return  lineas.stream().map(this::getAlumnoFromLine).toList();
     }
 
     /**
@@ -44,6 +44,7 @@ public class Utilidades {
      * @return
      */
     private Alumno getAlumnoFromLine(String lineaAlumno) {
-        throw new UnsupportedOperationException("A implementar por el alumno");
+      return   Alumno.alumnoDesdeString(lineaAlumno);
+
     }
 }

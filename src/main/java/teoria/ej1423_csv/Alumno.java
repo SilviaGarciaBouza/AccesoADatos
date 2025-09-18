@@ -40,12 +40,12 @@ public class Alumno {
 
     @Override
     public String toString() {
-        return "Alumno{" +
-                "nombre='" + nombre + '\'' +
-                ", edad=" + edad +
-                ", correo='" + correo + '\'' +
-                '}';
+        return
+                 nombre + ", " +
+                 edad +
+                ", " + correo ;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -58,5 +58,11 @@ public class Alumno {
     @Override
     public int hashCode() {
         return Objects.hash(nombre, edad, correo);
+    }
+
+    public static Alumno alumnoDesdeString(String alumnoCadena){
+       String[] alumnoCad= alumnoCadena.split(", ");
+        return new Alumno(alumnoCad[0], Integer.parseInt(alumnoCad[1]), alumnoCad[2]);
+
     }
 }
