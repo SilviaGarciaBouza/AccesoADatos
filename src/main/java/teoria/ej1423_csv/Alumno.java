@@ -41,9 +41,9 @@ public class Alumno {
     @Override
     public String toString() {
         return
-                 nombre + ", " +
+                 nombre + "," +
                  edad +
-                ", " + correo ;
+                "," + correo ;
     }
 
 
@@ -61,7 +61,7 @@ public class Alumno {
     }
 
     public static Alumno alumnoDesdeString(String alumnoCadena){
-       String[] alumnoCad= alumnoCadena.split(", ");
+       String[] alumnoCad= alumnoCadena.split(",");
         return new Alumno(alumnoCad[0], Integer.parseInt(alumnoCad[1]), alumnoCad[2]);
 
     }

@@ -2,8 +2,7 @@ package teoria.ej1423_csv;
 
 import teoria.ej142_buffer.GestorFicheroBuffered;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +19,17 @@ public class GestorFicheroAlumnosCsv {
      * @throws IOException
      */
     public List<Alumno> getAlumnos(File file) throws IOException {
-        throw new UnsupportedOperationException("A implementar por el alumno");
+        //throw new UnsupportedOperationException("A implementar por el alumno");
+        try(
+                FileInputStream fis= new FileInputStream(file);
+                InputStreamReader isr= new InputStreamReader(fis);
+                BufferedReader br= new BufferedReader(isr);
+                ){
+           return br.lines().map(e->Alumno.alumnoDesdeString(e)).toList();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return new ArrayList<>();
+        }
     }
 
     /**
@@ -32,10 +41,13 @@ public class GestorFicheroAlumnosCsv {
      * @throws IOException
      */
     public double getEdadMedia(File file) throws IOException {
-        //TODO
         //1.Llamar a GestorFiheroBuffered para obtener una list<String> con el contenido del fichero
         //2.Transformar la linea en un alumno. Repetir el proceso para todas las lineas del fichero
-        throw new UnsupportedOperationException("A implementar por el alumno");
+        return getAlumnos(file).stream()
+                .mapToInt(e->e.getEdad())
+                .average().orElse(0.0);
+
+
     }
 
     /**
@@ -46,9 +58,19 @@ public class GestorFicheroAlumnosCsv {
      * @throws IOException
      */
     public void escribirAlumnosCsv(List<Alumno> alumnos, File file) throws IOException {
-        //TODO
+
         //1. Transformar un alumno en una linea de texto, dónde campo se separa por ,. Repetir el proceso para todos los alumnos
         //2.-Llama al GestorFicheroBuffered para pasarle la lista de lineas
-        throw new UnsupportedOperationException("A implementar por el alumno");
+        try(
+        BufferedWriter bw= new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
+        ) {
+          List<String> lista= alumnos.stream().map(e->e.toString()).toList();
+          for(String element : lista){
+              bw.write(element+"\n");
+          }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
     }
 }
