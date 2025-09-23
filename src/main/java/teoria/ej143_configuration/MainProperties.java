@@ -5,7 +5,53 @@ import java.io.IOException;
 public class MainProperties {
 
 	public static void main(String[] args) throws IOException {
-		propertiesSimple();
+
+			// RUTA DEL A´RCHIVO DE PROPIlñEDADES RELATIVA AL DIRECTORIO RAÍZ DEL PROYECTO PARA ENCONTRAR EL ARCHIVO.
+			String rutaArchivo = "src/main/resources/configuracion.properties";
+
+			//  CARGAND.O EL ARCHIVO.
+			PropertiesHandler handler = new PropertiesHandler(rutaArchivo);
+
+			// RECUPERAR LOS VALORES DE LAS PROPIEDADES
+			String usuario = handler.getPropertyString("user");
+			String contrasena = handler.getPropertyString("password");
+
+			// MOSTRAR LOS VALORES POR CONSOLA PARA VERIFICAR QUE TODO FUNCIONA.
+			System.out.println("----------------------------------------");
+			System.out.println("LEYENDO PROPIEDADES DESDE EL ARCHIVO:");
+			System.out.println("Usuario: " + usuario);
+			System.out.println("Contraseña: " + contrasena);
+			System.out.println("----------------------------------------");
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		/*propertiesSimple();
 		//propertiesJasypt();
 	}
 
@@ -23,3 +69,4 @@ public class MainProperties {
 //		System.out.println("pin: " + pin);
 	}
 }
+*/

@@ -7,12 +7,23 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class PropertiesHandler {
-    Properties config;
+    private Properties config;
     File file= new File("src/main/java/resources/configuracion.properties");
 
-    public PropertiesHandler() throws IOException {
-        this(new Properties(),new File("src/main/java/resources/configuracion.properties"));
+    // CONSTRUCTOR. le paso l archiivo
+    public PropertiesHandler(String propertiesFilePath) {
+        config = new Properties();
+        try (FileInputStream fis = new FileInputStream(propertiesFilePath)) {
+            config.load(fis);
+        } catch (IOException e) {
+            throw new RuntimeException("Error al cargar el archivo de propiedades: " + propertiesFilePath, e);
+        }
     }
+    public String getPropertyString(String prop) {
+        return config.getProperty(prop);
+    }
+
+
 
     public PropertiesHandler(Properties config, File file) throws IOException {
         this.config = config;
@@ -23,9 +34,6 @@ public class PropertiesHandler {
 //    Verifica que funcione correctamente.
 //    Asegúrate que tenga un método getPropertyString,
 //     que reciba como argumento la clave del String y devuelva el valor asociado
-    public String getPropertyString(String key){
-        return config.getProperty(key);
-    }
 
 
 
