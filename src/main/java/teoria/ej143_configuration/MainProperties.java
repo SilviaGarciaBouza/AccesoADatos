@@ -16,7 +16,7 @@ public class MainProperties {
 			String usuario = handler.getPropertyString("user");
 			String contrasena = handler.getPropertyString("password");
 
-			// MOSTRAR LOS VALORES POR CONSOLA PARA VERIFICAR QUE TODO FUNCIONA.
+			// MOSTRAR LOS VALORES POR CONSOLA PARA VERIFICAR QUE  FUNCIONA.
 			System.out.println("----------------------------------------");
 			System.out.println("LEYENDO PROPIEDADES DESDE EL ARCHIVO:");
 			System.out.println("Usuario: " + usuario);

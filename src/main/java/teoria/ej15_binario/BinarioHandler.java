@@ -12,10 +12,20 @@ public class BinarioHandler {
 	 * @param productos
 	 */
 	public void escribirBinario(File fichero, List<Producto> productos) {
-		throw new UnsupportedOperationException("A implementar por el alumno");
+		try(ObjectOutputStream serializador= new ObjectOutputStream(new FileOutputStream(fichero))){
+            serializador.writeObject(productos);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
 	}
 
 	public List<Producto> leerBinario(File fichero) {
-		throw new UnsupportedOperationException("A implementar por el alumno");
+		List<Producto> listaProducto=null;
+        try(ObjectInputStream deserializador=new ObjectInputStream((new FileInputStream(fichero)))){
+            listaProducto=(List<Producto>) deserializador.readObject();
+        }  catch(Exception e){
+        System.out.println(e.getMessage());
+    }
+        return listaProducto;
 	}
 }
