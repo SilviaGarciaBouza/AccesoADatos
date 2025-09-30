@@ -18,7 +18,12 @@ public class BookConverter {
      * @throws IOException
      */
     public void marshallBook(Book book, File fichero) throws JAXBException, IOException {
-        throw new UnsupportedOperationException("A implementar por el alumno");
+        JAXBContext context = JAXBContext.newInstance(Book.class);
+        Marshaller mar= context.createMarshaller();
+        mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        mar.marshal(book, fichero);
+
+
     }
 
     /**
@@ -29,7 +34,10 @@ public class BookConverter {
      * @throws IOException
      */
     public void marshallBookStore(Bookstore bookstore, File file) throws JAXBException, IOException {
-        throw new UnsupportedOperationException("A implementar por el alumno");
+        JAXBContext context = JAXBContext.newInstance(Bookstore.class);
+        Marshaller mar= context.createMarshaller();
+        mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        mar.marshal(bookstore, file);
 
     }
 
@@ -41,7 +49,15 @@ public class BookConverter {
      * @throws IOException
      */
     public Book unmarshallBook(File file) throws JAXBException, IOException {
-        throw new UnsupportedOperationException("A implementar por el alumno");
+        JAXBContext context = JAXBContext.newInstance(Book.class);
+        return (Book) context.createUnmarshaller()
+                .unmarshal(file);
 
+    }
+
+    public Bookstore unmarshallBookStore(File file)throws JAXBException, IOException{
+        JAXBContext context = JAXBContext.newInstance(Bookstore.class);
+        return (Bookstore) context.createUnmarshaller()
+                .unmarshal(new FileReader(file));
     }
 }

@@ -10,9 +10,11 @@ public class AppCoche {
 	private CocheDao cocheRepository = new CocheDao();
 	
 	public static void main(String[] args) {
-		AppCoche appCoche = new AppCoche();
+	AppCoche appCoche = new AppCoche();
 		appCoche.readXML();
 		appCoche.writeXML();
+
+
 	}
 	
 	public void readXML() {
