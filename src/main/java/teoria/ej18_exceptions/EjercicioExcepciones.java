@@ -1,12 +1,20 @@
 package teoria.ej18_exceptions;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class EjercicioExcepciones {
 
     // Método que lanza una checked exception
     public static void metodoChecked() throws IOException {
-        throw new IOException("Error de E/S (checked exception)");
+        File fichero = new File("ficheropath");
+
+        List<String>lineas= new ArrayList<>();
+
+
     }
 
     // Método que lanza una unchecked exception

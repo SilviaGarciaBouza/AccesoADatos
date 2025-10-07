@@ -1,0 +1,76 @@
+{
+  "alumnos": [
+    {
+      "nombre": "Ana",
+      "dni": "00000000b",
+      "apellido1": "Garcia",
+      "apellido2": "Añon",
+      "asignaturas": [
+        {
+          "nombre": "acceso a datos",
+          "calificacion": 10
+        },
+        {
+          "nombre": "programacion",
+          "calificacion": 10
+        },
+        {
+          "nombre": "interfaces",
+          "calificacion": 10
+        },
+        {
+          "nombre": "empresa",
+          "calificacion": 10
+        }
+      ]
+    },
+    {
+      "nombre": "Alfonso",
+      "dni": "111111111b",
+      "apellido1": "Gallego",
+      "apellido2": "Fernandez",
+      "asignaturas": [
+        {
+          "nombre": "acceso a datos",
+          "calificacion": 9
+        },
+        {
+          "nombre": "programacion",
+          "calificacion": 10
+        },
+        {
+          "nombre": "interfaces",
+          "calificacion": 8
+        },
+        {
+          "nombre": "empresa",
+          "calificacion": 10
+        }
+      ]
+    },
+    {
+      "nombre": "Nuria",
+      "dni": "22222222h",
+      "apellido1": "Calo",
+      "apellido2": "Mosquera",
+      "asignaturas": [
+        {
+          "nombre": "acceso a datos",
+          "calificacion": 9
+        },
+        {
+          "nombre": "programacion",
+          "calificacion": 9
+        },
+        {
+          "nombre": "interfaces",
+          "calificacion": 10
+        },
+        {
+          "nombre": "empresa",
+          "calificacion": 10
+        }
+      ]
+    }
+  ]
+}

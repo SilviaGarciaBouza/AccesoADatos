@@ -1,0 +1,22 @@
+{
+  "alumnos": [
+    {
+      "nombre": "Ana",
+      "dni": "00000000b",
+      "apellido1": "Garcia",
+      "apellido2": "Añon"
+    },
+    {
+      "nombre": "Alfonso",
+      "dni": "111111111b",
+      "apellido1": "Gallego",
+      "apellido2": "Gallego"
+    },
+    {
+      "nombre": "Nuria",
+      "dni": "22222222h",
+      "apellido1": "Calo",
+      "apellido2": "Mosquera"
+    }
+  ]
+}
