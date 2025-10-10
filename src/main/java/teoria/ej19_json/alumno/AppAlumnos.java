@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
@@ -26,14 +27,20 @@ public class AppAlumnos {
         //TODO Hacer por parte del alumno
 
         // Parte 3: Generar y escribir en el archivo alumnos_estadisticas.json
-        //TODO Hacer por parte del alumno
+       calcularMediaAsignaturas(crearAlumnosFicticios()).forEach(System.out::println);
 
         System.out.println("Done!");
     }
 
 
     private static void escribirJson(File fichero) {
-
+        List<Alumno>listaAlumnos=crearAlumnosFicticios();
+        try(BufferedWriter bw= new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fichero)))){
+           String json= new Gson().toJson(listaAlumnos);
+           bw.write(json);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     private static List<Alumno> leerJson(File fichero) {
@@ -41,8 +48,8 @@ public class AppAlumnos {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fichero)))) {
 
 
-        JsonParser parser = new JsonParser();
-        JsonObject jsonob= parser.parse(br).getAsJsonObject();
+            JsonParser parser = new JsonParser();
+            JsonObject jsonob = parser.parse(br).getAsJsonObject();
 
             JsonArray gsonArr = jsonob.get("alumnos").getAsJsonArray();
             for (JsonElement element : gsonArr) {
@@ -60,14 +67,14 @@ public class AppAlumnos {
                     double calificacion = gsonObjAsig.get("calificacion").getAsDouble();
                     listaAsignautas.add(new Asignatura(name, calificacion));
                 }
-                Alumno a=new Alumno(nombre, dni, apellido1, apellido2, listaAsignautas);
+                Alumno a = new Alumno(nombre, dni, apellido1, apellido2, listaAsignautas);
 
                 listAlumnos.add(a);
             }
 
-    } catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
-    }finally {
+        } finally {
             return listAlumnos;
         }
     }
@@ -77,7 +84,16 @@ public class AppAlumnos {
     }
 
     private static List<Asignatura> calcularMediaAsignaturas(List<Alumno> alumnos) {
-        throw new UnsupportedOperationException("A implementar por el alumno");
+        Map<String, Double> mapeoAsignatura=new HashMap<String, Double>();
+        List<Asignatura>listaAsignaturas= new ArrayList<>();
+//        for(Alumno element:alumnos){
+//            for(Asignatura e:element.getAsignaturas()){
+//                mapeoAsignatura.put(e.getNombre(),mapeoAsignatura.getOrDefault(e.getNombre(),0.0)+e.getCalificacion());
+//            }
+//        }
+      mapeoAsignatura= alumnos.stream().flatMap(e->e.getAsignaturas().stream()).collect(Collectors.groupingBy(a->a.getNombre(),Collectors.averagingDouble(a->a.getCalificacion())));
+        mapeoAsignatura.entrySet().forEach(e->listaAsignaturas.add(new Asignatura(e.getKey(),e.getValue())));
+    return listaAsignaturas;
     }
 
     private static List<Alumno> crearAlumnosFicticios() {
@@ -99,5 +115,8 @@ public class AppAlumnos {
 
         return alumnos;
     }
+
+
+
 
 }
